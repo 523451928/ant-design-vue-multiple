@@ -58,10 +58,6 @@ export default {
       default: true
     },
     format: {type: String},
-    isOnlySelectHour: {
-      type: Boolean,
-      default: false
-    },
     selectTimeType: {
       type: String,
       default: 'selectMinute' // selectHour 选择小时  selectMinute 选择分钟  selectHM 选择时分
