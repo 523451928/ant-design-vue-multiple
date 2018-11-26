@@ -1,119 +1,102 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-      <div @click="increase">加</div>
-      <div @click="decrease">减</div>
-    </ul>
-  </div>
+  <a-layout id="components-layout-demo-fixed-sider">
+    <a-layout-sider :style="{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }" collapsible>
+      <div class="logo"></div>
+      <a-menu theme="dark" mode="inline" :defaultSelectedKeys="['4']">
+        <a-menu-item key="1" @click="success">
+          <a-icon type="user" />
+          <span class="nav-text">nav 1</span>
+        </a-menu-item>
+        <a-menu-item key="2">
+          <a-icon type="video-camera" />
+          <span class="nav-text">nav 2</span>
+        </a-menu-item>
+        <a-menu-item key="3">
+          <a-icon type="upload" />
+          <span class="nav-text">nav 3</span>
+        </a-menu-item>
+        <a-menu-item key="4">
+          <a-icon type="bar-chart" />
+          <span class="nav-text">nav 4</span>
+        </a-menu-item>
+        <a-menu-item key="5">
+          <a-icon type="cloud-o" />
+          <span class="nav-text">nav 5</span>
+        </a-menu-item>
+        <a-menu-item key="6">
+          <a-icon type="appstore-o" />
+          <span class="nav-text">nav 6</span>
+        </a-menu-item>
+        <a-menu-item key="7">
+          <a-icon type="team" />
+          <span class="nav-text">nav 7</span>
+        </a-menu-item>
+        <a-menu-item key="8">
+          <a-icon type="shop" />
+          <span class="nav-text">nav 8</span>
+        </a-menu-item>
+      </a-menu>
+    </a-layout-sider>
+    <a-layout :style="{ marginLeft: '200px' }">
+      <a-layout-header :style="{ background: '#fff', padding: 0 }" />
+      <a-layout-content :style="{ margin: '24px 16px 0', overflow: 'initial' }">
+        <div :style="{ padding: '24px', background: '#fff', textAlign: 'center' }">
+          <br />
+          Really
+          <br />...<br />...<br />...<br />
+          long
+          <br />...<br />...<br />...<br />...<br />...<br />...
+          <br />...<br />...<br />...<br />...<br />...<br />...
+          <br />...<br />...<br />...<br />...<br />...<br />...
+          <br />...<br />...<br />...<br />...<br />...<br />...
+          <br />...<br />...<br />...<br />...<br />...<br />...
+          <br />...<br />...<br />...<br />...<br />...<br />...
+          <br />...<br />...<br />...<br />...<br />...<br />...
+          <br />...<br />...<br />...<br />...<br />...<br />
+          content
+        </div>
+      </a-layout-content>
+      <a-layout-footer :style="{ textAlign: 'center' }">
+        Ant Design ©2018 Created by Ant UED
+      </a-layout-footer>
+    </a-layout>
+  </a-layout>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
 export default {
-  name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      current: 3,
+      total: 500,
+      value: 'a'
+    }
+  },
+  watch: {
+    current(newVal) {
+      console.log(newVal)
     }
   },
   methods: {
-    ...mapMutations(['increase', 'decrease'])
+    onChange(e) {
+      console.log(this.value)
+    },
+    success() {
+      this.$message.success('This is a prompt message for success, and it will disappear in 10 seconds', 10)
+    },
+    onShowSizeChange(current, pageSize) {
+      console.log(current, pageSize)
+      this.total -= 10
+    }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+
+<style>
+#components-layout-demo-fixed-sider .logo {
+  height: 32px;
+  background: rgba(255,255,255,.2);
+  margin: 16px;
 }
 </style>
