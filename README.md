@@ -150,3 +150,26 @@ const webpackConfig = merge(baseWebpackConfig, {
 
 ## 添加新页面
 > 按照pages下面规则添加页面
+
+
+## vue-cli-3
+> 在项目根目录新建vue.config.js
+
+```
+const glob = require('glob')
+
+const pages = {}
+glob.sync('./src/pages/**/app.js').forEach(path => {
+  const chunk = path.split('./src/pages/')[1].split('/app.js')[0]
+  console.log(chunk)
+  pages[chunk] = {
+    template: path.replace('js', 'html'),
+    entry: path,
+    filename: chunk + '.html'
+  }
+})
+console.log(pages)
+module.exports = {
+  pages
+}
+```
